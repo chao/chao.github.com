@@ -1,0 +1,685 @@
+\documentclass[10pt]{article}
+
+
+\usepackage{times}
+\renewcommand{\familydefault}{\sfdefault}
+
+\renewcommand\emph[1]{#1}
+\renewcommand\textit[1]{\underline{#1}}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+% Simpler bibsections for CV sections
+% (thanks to natbib for inspiration)
+%
+% * For lists of references with hanging indents and no numbers:
+%
+%   \begin{bibsection}
+%       \item ...
+%   \end{bibsection}
+%
+% * For numbered lists of references (with hanging indents):
+%
+%   \begin{bibenum}
+%       \item ...
+%   \end{bibenum}
+%
+%   Note that bibenum numbers continuously throughout. To reset the
+%   counter, use
+%
+%   \restartlist{bibenum}
+%
+%   at the place where you want the numbering to reset.
+
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newlist{bibsection}{itemize}{3}
+\setlist[bibsection]{label=,leftmargin=\bibhang,%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\newlist{bibenum}{enumerate}{3}
+\setlist[bibenum]{label=[\arabic*],resume,leftmargin={\bibhang+\widthof{[999]}},%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\let\oldendbibenum\endbibenum
+\def\endbibenum{\oldendbibenum\vspace{-.6\baselineskip}}
+\let\oldendbibsection\endbibsection
+\def\endbibsection{\oldendbibsection\vspace{-.6\baselineskip}}
+\makeatother
+
+%%% Setup header and footer (with page number and possible last page)
+%
+% The first block sets up pages 2--end
+% The second block sets up page 1 formatting
+%
+%%%
+%
+% NOTE: comment the +LP lines and uncomment the -LP lines to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers on pages 2--end. To get rid of page numbers on page 1,
+%       comment out the \thispagestyle{plain} line on the first page
+%       below.
+%       (also make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+
+%%%% PAGES 2--9 NUMBERING:
+%% These two lines put page number in upper-right corner of pages 2--end
+%\rhead{Chao ZHOU, \arabic{page} of \protect\pageref*{LastPage}}   % +LP
+%\rhead{Pavlic, p.~\arabic{page}}                                 % -LP
+
+%% These lines put page number in bottom (center) of pages 2--end
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+%%%% END PAGE 2--9 NUMBERING
+
+%%%% PAGE 1 NUMBERING:
+\makeatletter
+\let\oldps@plain\ps@plain
+\renewcommand{\ps@plain}{\oldps@plain%
+\renewcommand{\@evenfoot}{\hspace*{-\footpageshift}\hfil %
+    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%    p.~\arabic{page}                               % -LP
+    \hfil}%
+\renewcommand{\@oddfoot}{\@evenfoot}}
+\makeatother
+%%%% END PAGE 1 NUMBERING
+
+% Finally, give us PDF bookmarks and colored links
+%
+% NOTE: Some OCR software might be negatively affected by hyperlinks. So
+%       most employers recommend the draft option here. Alternatively,
+%       making all links black (as opposed to darkblue) should hopefully
+%       prevent problems with most OCR.
+%
+% (to enable hyperlinks and bookmarks, comment out ``draft'' line;
+%  to disable hyperlinks and bookmarks, uncomment ``draft'' line)
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{breaklinks,colorlinks,
+            linkcolor=black,urlcolor=black,
+            anchorcolor=black,citecolor=black,
+            %linkcolor=darkblue,urlcolor=darkblue,
+            %anchorcolor=darkblue,citecolor=darkblue,
+            %draft
+            }
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% HEADING AT TOP OF CURRICULUM VITAE
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+%%% SECTION HEADINGS
+
+% The section headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+%%% LISTS
+
+% This macro alters a list by removing some of the space that follows the list
+% (is used by lists below)
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+% These macros help ensure that items in outer-type lists do not get
+% separated from the next line by a page break
+% (they are used by lists below)
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\csname preFixOuterList#1\endcsname\let\oldItem\item\def\item{\pagebreak[2]\oldItem}}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+% An itemize-style list with lots of space between items
+%
+% Usage:
+%   \begin{outerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{outerlist}
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{lonelist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{lonelist}
+\newlist{lonelist}{itemize}{3}
+    \setlist[lonelist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+% An itemize-style list with little space between items
+%
+% Usage:
+%   \begin{innerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{innerlist}
+\newlist{innerlist}{itemize}{3}
+    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{loneinnerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{loneinnerlist}
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+%%% EXTRA SPACE
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+%%% FORMATTING MACROS
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+\providecommand*\url[1]{\href{#1}{#1}}
+% Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+\renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+% Custom hyphenation rules for words that LaTeX has trouble with
+\hyphenation{bio-mim-ic-ry bio-in-spi-ra-tion re-us-a-ble pro-vid-er}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\thispagestyle{plain}
+\makeheading[\emph{Curriculum vitae}]{Dr.~Chao~ZHOU}
+
+\section{Contact Information}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table. Table is one row made up of three parboxes. The left
+%       parbox has address info, the middle parbox has a vertical bar,
+%       and the right parbox has phone and electronic contact
+%       information.
+%
+% MACROS: \rcollength is the width of the right column of the table
+%             (adjust it to your liking; default is 1.85in).
+%         \spacewidth is width of area between left and right boxes.
+%         \spacechar is character used to produce perforated vertical
+%             boundary between boxes.
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.85in}%
+\newlength{\spacewidth}\setlength{\spacewidth}{20pt}
+\newcommand\spacechar{$|$}
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength-\spacewidth}@{}p{\spacewidth}@{}p{\rcollength}}%
+
+% Address box
+\parbox{\textwidth-\rcollength-\spacewidth}{%
+Buiding 28, 1-501\\
+Longtengyuan 4, Huilongguan, Changping\\
+Beijing 102208, China}
+
+% Cheesy perforated vertical bar between boxes
+% Shorten by removing \spacechar's
+& \parbox{\spacewidth}{\centering \spacechar\\\spacechar\\\spacechar\\\spacechar\\\spacechar} &
+
+% Non-snail-mail contact information
+\parbox{\rcollength}{%
+\emph{Mobile:} +86 186 0102 0132 \\
+\emph{Fax:} +86 10 82980165 \\
+\emph{E-mail:} \email{chao@zhou.fr}\\
+\emph{WWW:} \href{http://zhou.fr}{http://zhou.fr}}
+
+\end{tabular}
+
+%%
+%% In modern CV's, it seems like ``Objective'' is frowned upon. Instead,
+%% incorporate it into a well-constructed cover letter. The ``More
+%% information'' can go at the end of the CV, but it should not distract
+%% from the section giving references available to contact.
+%%
+%
+% \section{Objective}
+%
+% Full-time position that allows for advanced research in electrical and
+% computer engineering (communications, control, software, electronics,
+% and sustainability), with a particular focus on complex distributed
+% systems (i.e., modeling, analysis, design, and verification)
+% \begin{innerlist}
+%     \item For more information, see \url{http://www.tedpavlic.com/engjobsearch/}
+% \end{innerlist}
+
+%\section{Qualifications and Interests}
+%
+%Advanced control systems, complex adaptive systems, agent-based
+%modeling, hybrid dynamic systems, distributed algorithms, amorphous
+%computing, autonomous systems and vehicles, networks, communications,
+%verification, cooperation, optimization, game theory, parallel
+%computation, robotics, analog electronics, behavioral ecology,
+%bio-mimicry
+
+\section{Education}
+
+ \href{http://www.utt.fr/}
+             {\textbf{Troyes University of Technology (France)}}
+             \hfill Sept. 2005-Jun. 2009 
+
+\halfblankline
+
+Ph. D. in \href{http://tech-cico.utt.fr/}  {Networks, Knowledge, and Organizations} \\
+Thesis: Scaling Up the Socio-semantic Web: Application Protocol and User Interfaces \\
+Scholarship: China Scholarship Council \\
+\halfblankline
+
+ \href{http://www.ncepu.edu.cn/}
+             {\textbf{North China Electric Power University (China)}}
+             \hfill Sept. 2002-Jul. 2005
+
+\halfblankline
+
+Master of Science in Computer Science and Engineering \\
+Thesis: Study and Implement a Real-time Database for Power Corporation \\
+Scholarship: Sifang Scholarship \\
+\halfblankline
+
+ \href{http://http://www.bistu.edu.cn//}
+             {\textbf{Beijing Information Science \& Technology University}}
+             \hfill Sept. 1997-Jul. 2002
+
+\halfblankline
+
+Bachelor of Science in Computer Science \\
+Graduated with Highest Honors
+
+\section{Professional Experience}
+
+\href{http://www.nostos.com.cn/}{\textbf{Nostos Technology Ltd.}}, Beijing, China
+\begin{outerlist}
+
+    \item[] \textit{Chief Technology Officer}%
+            \hfill {September 2010 - present}
+            \begin{innerlist}
+                \item Co-found with Professor Manual ZACKLAD (\href{http://www.cnam.fr/}{ Conservatoire National des Arts et M{\'e}tiers, France) }
+                \item Developed Web 2.0 CMS / OA system for Chinese corporations.
+                \item Developed a novel remote medication system for a Hongkong corporation.
+            \end{innerlist}
+
+\end{outerlist}
+
+\halfblankline
+
+\href{http://www.cogniva.eu/}{\textbf{Cogniva Europe}}, France
+\begin{outerlist}
+
+    \item[] \textit{Senior Software Engineer}
+            \hfill {May 2009 - July 2010}
+            \begin{innerlist}
+                \item Developed a Folksonomy based document management system (Semiotag) for France Telecom S.A. 
+            \end{innerlist}
+\end{outerlist}
+
+\halfblankline
+
+\href{www.wanfangdata.com.cn/}{\textbf{Wangfang Data, Inc.}}, China
+
+\begin{outerlist}
+
+\item[] \textit{Web Programmer}%
+        \hfill {September 2001- July 2002}
+
+\begin{innerlist}
+\item Developed e-Business publish management system for China publications import \& export corporation.
+\end{innerlist}
+
+\end{outerlist}
+
+\section{Projects}
+
+\textbf{e-Commerce platform for small B2C company} 
+\hfill Spring 2012 - present
+
+\halfblankline
+
+The e-Commerce platform is targeted to small B2C business company, the platform is work out-of-the-box that allows those companies to set it up with minor configs. Administrator can easily presents products to clients, and get paid by Alipay. 
+
+\halfblankline
+
+The front-end of this platform is designed with Twitter Bootstrap, the back-end RESTful web services are implemented with Python (based on Django framework) and MySQL. Memcached is also well supported in this platform.\\
+
+
+\textbf{RESTClient}
+\hfill Spring 2006 - present
+
+\halfblankline
+
+RESTClient is a Firefox add-on, it's designed for testing RESTful web services. It's developed with XUL and JavaScript, and recently it has been re-write with JavaScript with Twitter bootstrap 2.0.2. RESTClient is a very popular Firefox add-on, it has about 30,000 active users.
+
+\halfblankline
+
+\url{http://www.restclient.net} \\
+
+
+\textbf{uPassword}
+\hfill Winter 2011 - present
+
+\halfblankline
+
+uPassword is a password generator, it helps user to create and manage secure passwords. uPassword was developed as browser plugins (support Safari, Google Chrome, Firefox),  iOS app, and Android App. \\
+\url{http://www.upassword.com} \\
+
+
+\textbf{LaSuli}
+\hfill Spring 2008 - Fall 2011
+
+\halfblankline
+
+LaSuli is a Firefox add-on, which is used for social annotation for qualitative analysis. Currently is used by students in Liège University (Belgium) and Troyes University of Technology (France). It's released under the GNU General Public License.\\
+\url{https://github.com/Hypertopic/LaSuli}\\
+
+\textbf{Remote Medication Platform}
+\hfill Winter 2010 - Summer 2011
+
+\halfblankline
+
+Remote Medication Platform is a Web 2.0 application, is designed for medicine doctors to diagnose patients remotely. This platform is distribute on several cities, the client side can use a special device to scan patients documents and share with doctors, they also can exchange information thought a online meeting platform. This platform is developed with Java and Oracle.\\
+
+
+\textbf{Implementing a Folksonomy on the Architecture of NoSQL}
+\hfill Spring 2011
+
+\halfblankline
+
+Implement an model using a metrics to calculate the distance of documents, and to help finding the “nearby” documents. Implement the model on NoSQL database "CouchDB".\\
+This project is funded by CNRS (National Center for Scientific Research, France). I finished this project by remotely collaborating with Tech-CICO laboratory, UTT, France. \\
+
+
+\textbf{Semiotag}
+\hfill Spring 2010 - Spring 2011
+
+\halfblankline
+
+Semiotag is a document management system which implement  with Folksonomy. The project is outsourced from Cogniva Europe (France). The applications are developed by C\# and implemented on Microsoft cloud platform (Windows Azure). The web services and web applications are developed with C\#, MSSQL, and jQuery.\\
+
+
+\textbf{Nostos Content Management System}
+\hfill Spring 2010 - Spring 2011
+
+\halfblankline
+
+Nostos CMS is developed with Python, PHP and MySQL. This management system adopted a lot of HTML5 and CSS5 technologies. \\
+
+
+\textbf{Argos and Agorae}
+\hfill Winter 2005 - Fall 2011
+
+\halfblankline
+
+Argos is an  implementation of Hypertopic model. It has been successfully used to manage multi-viewpoints catalogues buit by: managers (France Telecom, Airbus), mechanical engineers (ABB), and researchers (ANDRA \& social scientists, Open archive, UNESCO diaspora knowledge network), etc.
+It's developed with PHP and PostgreSQL, and it has been adopt to Apache CouchDB database in the later of 2009. \\
+\url{https://github.com/Hypertopic/Argos} \\
+\url{https://github.com/Hypertopic/Agorae} \\
+
+
+\textbf{i-Semantec}
+\hfill Sprint 2007 - Spring 2009
+
+\halfblankline
+
+The i-Semantec project, funded by ANR (Agence nationale de la recherche, France), was developed in the context of the issues of knowledge capitalization, management and reuse among large industrial corporations.  The project aims at building a Web 2.0 application to integrate the data and document from PLM (Product Lifecycle Management) \\
+Partners: Cadesis, ICD/Tech-CICO, Topica tools, ABB.\\
+\url{https://github.com/Hypertopic/Protocol/wiki/Isemantec} \\\
+
+
+
+\halfblankline
+
+\textbf{CogDoc}
+\hfill Sprint 2007 - Summer 2009
+
+\halfblankline
+
+The project ‘CogDoc’ aims at providing a Web 2.0 platform for sharing course materials (slides and audio/video records) among teachers and students from French speaking universities related to an international and interdisciplinary research group. \\
+\url{https://github.com/Hypertopic/Protocol/wiki/CogDoc} \\
+
+
+\section{Publications}
+
+\begin{bibenum}
+    \item \emph{Web 2.0 \& Serious Game: Structuring knowledge for participative and educative representations of the City}, Jean-Pierre Cahier, Nour El Mawas, {Aur{\'e}lien} {B{\'e}nel}, Chao Zhou.  International Conference on Smart and Sustainable City, Shanghai, 6-8 July 2011. 2011.
+
+    \item Beyond Web 2.0... And Beyond the Semantic Web, {Aur{\'e}lien} {B{\'e}nel}, Chao Zhou, Jean-Pierre Cahier. From CSCW to Web 2.0: European Developments in Collaborative Design. Randall, David; Salembier, Pascal (Eds.). pp. 155-171. Computer Supported Cooperative Work. Springer Verlag. 2010.  
+
+    \item {\'E}loge de l'h{\'e}t{\'e}rog{\'e}n{\'e}it{\'e} des structures d'analyse de textes, {Aur{\'e}lien} {B{\'e}nel}, \\Christophe Lejeune, Chao Zhou. Document num{\'e}rique. pp. 41-56. RSTI vol. 13 no. 2. Herm{\`e}s-Lavoisier. 2010. 
+
+    \item Scaling up the Socio-semantic Web: Application protocol and user interfaces, Chao Zhou. Universit{\'e} de technologie de Troyes. 2009. 
+    
+    \item From the crowd to communities: New interfaces for social tagging, Chao Zhou, {Aur{\'e}lien} {B{\'e}nel}. Proceedings of the eighth international conference on the design of cooperative systems (COOP'08), Carry-le-Rouet, May 20-23, 2008. 
+    
+    \item Intelligence qualitative dans la gestion de risque : r{\^o}le de la documentarisation et des Syst{\`e}mes d’Organisation des Connaissances, Manuel Zacklad, Jean-Pierre Cahier,  {Aur{\'e}lien} {B{\'e}nel}, L'H{\'e}di Zaher, Christophe Lejeune, Chao Zhou. Actes des 19e journ{\'e}es francophones d'ing{\'e}nierie des connaissances (IC'2008). 2008.
+    
+    \item Hypertopic : une m{\'e}tas{\'e}miotique et un protocole pour le Web socio-s{\'e}mantique, Manuel Zacklad, Aur{\'e}lien B{\'e}nel, Jean-Pierre Cahier, L'H{\'e}di Zaher, Christophe Lejeune, Chao Zhou. Actes des 18eme journ{\'e}es francophones d'ing{\'e}nierie des connaissances (IC2007). Francky Trichet (Eds.). pp. 217-228. C{\'e}padu{\`e}s. 2007. ISBN 978-2-85428-790-9. 
+    
+    \item Towards a standard protocol for community-driven organizations of knowledge, Chao Zhou, Aur{\'e}lien B{\'e}nel, Christophe Lejeune.Proceedings of the thirteenth international conference on Concurrent Engineering, Antibes, September 18-22, 2006. pp. 438-449. Frontiers in Artificial Intelligence and Appl. vol. 143. Amsterdam: IOS Press. 2006.
+    
+\end{bibenum}
+
+\section{Service}
+
+Recent contributor to several open-source software projects, including:
+\begin{innerlist}
+    \item \href{https://github.com/apache/couchdb/}{Apache CouchDB LDAP Authentication plugin}
+    \item \href{https://github.com/Hypertopic/lib-php}{Hypertopic PHP Library} and
+        \href{https://github.com/Hypertopic/lib-objc}{Hypertopic Objective-C Library}
+    \item Personal projects archived at
+        \url{https://github.com/chao/}
+\end{innerlist}
+
+\section{Awards}
+
+\href{http://www.csc.edu.cn/}{China Scholarship Council},  University Scholarship, 2005--2008
+
+\halfblankline
+
+Electrical and Computer Engineering Sifang Scholarship, 2002--2005
+
+\section{Skills}
+
+Computer Programming:
+%
+\begin{innerlist}
+    \item JavaScript, Pyhton, PHP, CSS, C, C$+$$+$, Java,
+        UNIX shell scripting, GNU make, Erlang,
+        AppleScript, SQL, MySQL, PostgreSQL, Oracle, and others
+\end{innerlist}
+
+\halfblankline
+
+Web Design:
+%
+\begin{innerlist}
+    \item Adobe Photoshop, jQuery, YUI, Twitter Bootstrap, Balsamiq Mockups, FreeMind, MindNote, and others
+\end{innerlist}
+
+
+\halfblankline
+
+Version Control and Software Configuration Management:
+%
+\begin{innerlist}
+    \item DVCS (Mercurial/MQ, Git/StGit), VCS (RCS, CVS, SVN, SCCS), and
+        others
+\end{innerlist}
+
+\halfblankline
+
+Information/Internet Technology:
+%
+\begin{innerlist}
+    \item Networking (UDP, TCP, ARP, DNS, Dynamic
+        routing), Services (Apache, SQL, MediaWiki, POP, IMAP, SMTP,
+        application-specific daemon design)
+\end{innerlist}
+
+\halfblankline
+
+Productivity Applications:
+%
+\begin{innerlist}
+    \item \TeX{} (\LaTeX{}, \BibTeX{}), Vim,
+        most common productivity packages (for Windows, OS X, and Linux
+        platforms)
+\end{innerlist}
+
+\halfblankline
+
+Operating Systems:
+%
+\begin{innerlist}
+    \item Apple OS X, Linux (Ubuntu, RedHat, CentOS, etc.), Microsoft Windows family
+\end{innerlist}
+
+\section{References Available to Contact}
+
+Available upon request. 
+\vspace{0.3in}
+
+\section{More Information}
+
+More information and auxiliary documents can be found at\\%
+\url{http://zhou.fr/}.
+
+\end{document}

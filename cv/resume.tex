@@ -1,0 +1,240 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+%%   Chao ZHOU RESUME
+%%     - based off work by Michael DeCorte 
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%
+%% The following code sets up the document formatting
+%%
+
+%this assumes that res_yy.sty is in some path
+\documentstyle[hyperref, margin, line]{resume}
+
+\hypersetup{backref,pdfpagemode=Full,colorlinks=true,backref}
+
+\addtolength{\oddsidemargin}{-0.45in}
+\addtolength{\voffset}{-0.30in}
+\addtolength{\textwidth}{1.00in} \addtolength{\textheight}{1.50in}
+
+\renewcommand{\namefont}{\LARGE\emph}
+
+
+
+%%
+%% The following code defines some macros for terms which have raised font
+%% (ie 4\fourth would result 4th with the 'th' raised (superscripted)
+%%
+
+\def\Cplusplus{{\rm C\raise.5ex\hbox{\small ++}}}
+\def\CSharp{{\rm C\raise.5ex\hbox{\small \#}}}
+% 'st' 'nd' 'rd' 'th' superscripts for numbers
+\def\first{{\raise.5ex\hbox{\small st}}}
+\def\second{{\raise.5ex\hbox{\small nd}}}
+\def\third{{\raise.5ex\hbox{\small rd}}}
+\def\fourth{{\raise.5ex\hbox{\small th}}}
+
+
+
+%%
+%% starting the actual document
+%%
+
+\begin{document}
+
+%the name in big fonts at the top of resume
+%this is left aligned
+\name{Chao ZHOU}
+
+%this is right aligned
+\address{
+website: \href{http://zhou.fr}{zhou.fr} \ \ \ \ \ email: \href{mailto:chao@zhou.fr}{\nolinkurl{chao@zhou.fr}}
+}
+
+\begin{resume}
+
+
+%%
+%% This section of code is inelegant, but I'm too lazy to fix it
+%%
+
+\section{\textsc{Research Interest}}
+My research interests lie primarily in machine learning, data analysis and information retrieval. 
+
+\section{\textsc{Education}}
+
+\textbf{University of technology of Troyes, Troyes, France} \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ September 2005-June 2009 \\
+Ph.D. in Computer Science
+
+\textbf{North China Electric Power University, Beijing, China} \ \ \ \ \ \ \ \ September 2002-July 2005 \\
+Master of Science in Computer Science and Engineering
+
+\textbf{North China Electric Power University, Beijing, China}  \ \ \ \ \ \ \ \ September 1997-July 2001 \\
+Bachelor of Science in Computer Science\\
+Graduated with Highest Honors
+
+
+
+%%
+%% the meat of the resume starts now
+%%
+
+\begin{formatb}
+  \employer{l}\title{r}\\
+  \location{l}\dates{r}\\
+  \body\\
+\end{formatb}
+
+\section{\textsc{Work Experience}}
+
+\employer{\textbf{Nostos Technology Ltd.}}
+\title{Chief Technology Officer}
+\location{Beijing, China}
+\dates{2010 -- Present}
+\begin{position}
+Developed new online learning techniques; worked on deployment algorithms for ambulance deployment.
+\end{position}
+
+
+\employer{\textbf{Cogniva Europe}}
+\title{Senior Software Engineer}
+\location{Troyes, France}
+\dates{May 2009 - July 2010}
+\begin{position}
+Developed a folksonomy based document management system called "semiotag" for France Telecom S.A. 
+\end{position}
+
+\employer{\textbf{Wangfang Data, Inc}}
+\title{Web Programmer}
+\location{Beijing, China}
+\dates{2001-2002}
+\begin{position}
+Developed e-Business publish management system for China publications import \& export corporation.
+\end{position}
+
+%%
+%% We use the same formatting for projects as for work experience
+%% Shown below is the formatting used previously
+%%
+%%  \begin{formatb}
+%%    \employer{l}\title{r}\\
+%%    \location{l}\dates{r}\\
+%%    \body\\
+%%  \end{formatb}
+%%
+%% 
+%%  Note that \location is now being used for non-location information
+%%
+
+
+\begin{formatb}
+  \employer{l}\dates{r}\\
+  \body\\
+\end{formatb}
+
+\section{\textsc{Projects}}
+
+\employer{\textbf{An e-Commerce platform for small B2C business company}}
+\dates{Spring 2012 - present}
+\begin{position}
+The e-Commerce platform is targeted to small B2C business company, the platform is work out-of-the-box that allows those companies to set it up with minor configs. Administrator can easily presents products to clients, and get paid by Alipay.
+The web pages are implemented with Twitter Bootstrap, the back end RESTful web services are implemented with Python (based on Django framework) and MySQL. Memcached is also well supported in this platform.
+\end{position}
+
+\employer{\textbf{RESTClient}}
+\dates{Spring 2006}
+\begin{position}
+RESTClient is a Firefox add-on, it's designed for testing RESTful web services. It's developed with XUL and JavaScript, and recently it has been re-write with JavaScript with Twitter bootstrap 2.0.2. RESTClient is a very popular Firefox add-on, it has about 30,000 active users.
+\url{http://www.restclient.net}
+\end{position}
+
+\employer{\textbf{uPassword}}
+\dates{Winter 2011}
+\begin{position}
+uPassword is a password generator, it helps user to create and manage secure passwords. uPassword was developed as browser plugins (support Safari, Google Chrome, Firefox),  iOS app, and Android App. \\
+\url{http://www.upassword.com}
+\end{position}
+
+\employer{\textbf{Implementing a Folksonomy on the Architecture of NoSQL}}
+\dates{Spring 2011}
+\begin{position}
+Implement an model using a metrics to calculate the distance of documents, and to help finding the “nearby” documents. Implement the model on NoSQL database "CouchDB".
+This project is funded by CNRS (National Center for Scientific Research, France). I finished this project by remotely collaborating with Tech-CICO laboratory, UTT, France. 
+\end{position}
+
+\employer{\textbf{Semiotag}}
+\dates{Spring 2010 - Spring 2011}
+\begin{position}
+Semiotag is a document management system which implement  with Folksonomy. The project is outsourced from Cogniva Europe (France). The applications are developed by \CSharp and implemented on Microsoft cloud platform (Windows Azure). The web services and web applications are developed with \CSharp, MSSQL, and jQuery.
+\end{position}
+
+\employer{\textbf{Nostos Content Management System}}
+\dates{Spring 2010 - Spring 2011}
+\begin{position}
+Nostos CMS is developed with Python, PHP and MySQL. This management system adopted a lot of HTML5 and CSS5 technologies. 
+\end{position}
+
+\employer{\textbf{LaSuli}}
+\dates{Spring 2008 - Fall 2011}
+\begin{position}
+LaSuli is a Firefox add-on, which is used for social annotation for qualitative analysis. Currently is used by students in Liège University (Belgium) and Troyes University of Technology (France). It's released under the GNU General Public License.\\
+\url{https://github.com/Hypertopic/LaSuli}
+\end{position}
+
+\employer{\textbf{Argos and Agorae}}
+\dates{Winter 2005 - Fall 2011}
+\begin{position}
+Argos is an  implementation of Hypertopic model. It has been successfully used to manage multi-viewpoints catalogues buit by: managers (France Telecom, Airbus), mechanical engineers (ABB), and researchers (ANDRA \& social scientists, Open archive, UNESCO diaspora knowledge network), etc.
+It's developed with PHP and PostgreSQL, and it has been adopt to Apache CouchDB database in the later of 2009. \\
+\url{https://github.com/Hypertopic/Argos} \\
+\url{https://github.com/Hypertopic/Agorae}
+\end{position}
+
+\employer{\textbf{i-Semantec}}
+\dates{Sprint 2007 - Spring 2009}
+\begin{position}
+The i-Semantec project, funded by ANR (Agence nationale de la recherche, France), was developed in the context of the issues of knowledge capitalization, management and reuse among large industrial corporations.  The project aims at building a Web 2.0 application to integrate the data and document from PLM (Product Lifecycle Management) \\
+Partners: Cadesis, ICD/Tech-CICO, Topica tools, ABB.\\
+\url{https://github.com/Hypertopic/Protocol/wiki/Isemantec}
+\end{position}
+
+\employer{\textbf{CogDoc}}
+\dates{Sprint 2007 - Summer 2009}
+\begin{position}
+The project ‘CogDoc’ aims at providing a Web 2.0 platform for sharing course materials (slides and audio/video records) among teachers and students from French speaking universities related to an international and interdisciplinary research group. \\
+\url{https://github.com/Hypertopic/Protocol/wiki/CogDoc}
+\end{position}
+
+
+%%
+%% This section could also use more formatting, but looks ok, as is
+%%
+
+\section{\textsc{Qualifications}}
+
+\emph{Programming Languages}: Python, JavaScript, CSS, PHP, \CSharp, MySQL, PostgreSQL, Objective C
+
+\emph{Libraries and Tools}: Vim, \LaTeX, Adobe Suite, Microsoft Visual Studio, Eclipse, TextMate, XCode
+
+
+%%
+%% Note that we're redefining the formatting
+%% We only have one row of information now, instead of two
+%%
+
+\section{\textsc{Publications}}
+
+%\bibliography{bibtex}
+%\addtocategory{papers}{CHAO10,CHAO08,CHAO07,CHAO08A,CHAO06,CHAO11,CHAO10A}
+%\addtocategory{phd}{CHAO09}
+
+%\begin{publications}
+%\printbib{papers}
+%\printbib{phd}
+%\end{publications}
+
+\end{resume}
+\end{document}

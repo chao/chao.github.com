@@ -1,0 +1,91 @@
+<html>
+ <head>
+  <script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript">
+
+   $(document).ready(function(){
+     //getTags();
+   });
+
+   function createTag() {
+    var resource = $("#resource").val();
+    var tag =$("#tag").val();
+    var jsonData = {
+         person:"Toto",
+         resource: resource,
+         tag: tag
+       };
+    jsonData = JSON.stringify(jsonData);
+    console.log(jsonData);
+     $.ajax({
+       url: "example.php",
+       type: "PUT",
+       cache: false,
+       dataType: 'json',
+       contentType: "application/json",
+       data: jsonData,
+       success: function(data)
+       {
+        alert(JSON.stringify(data));
+       },
+       complete: function(xhr, ts) {
+         //alert("done?");
+       }
+     });
+   }
+
+
+   function getTags() {
+     $.ajax({
+       url: "http://localhost:8080/resources/tags/",
+       type: "GET",
+       contentType: "application/json",
+       success: function (data) {
+         var addresses = "";
+         for (var i = data.length-1; i>=0; i--) {
+	   addresses += '<h2>';
+           addresses += data[i].resource;
+           addresses += '</h2>';
+           addresses += data[i].tag;
+           addresses += '<button onclick="deleteTag(';
+           addresses += data[i].id;
+           addresses += ')">-</button>';
+         }
+         $("#addresses").html(addresses);
+       }
+     });
+
+   }
+
+   /*function createTag(id, person, resource, tag) {
+     alert("TODO create " + id + " with "+ person + " " + resource + " " + tag);
+   }*/
+
+   function updateTag(id, person, resource, tag) {
+     alert("TODO update " + id + " with "+ person + " " + resource + " " + tag);
+   }
+
+   function deleteTag(id) {
+//     alert("TODO delete " + id);
+     $.ajax({
+       url: "http://localhost:8080/resources/tags/" + id,
+       type: "DELETE",
+       success: location.reload()
+     });
+   }
+
+  </script>
+ </head>
+ <body>
+  <div>Fict.io.us</div>
+  <h1>Les bonnes adresses de Toto</h1>
+  <form id="form-tag-creation" onsubmit="createTag(); return false">
+   Ressource :
+   <input id="resource" name="resource" type="text" />
+   Mot-clef :
+   <input id="tag" name="tag" type="text" />
+   <input type="submit" value="+" />
+  </form>
+  <div id="addresses"></div>
+ </body>
+</html>

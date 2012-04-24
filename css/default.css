@@ -1,0 +1,124 @@
+body {
+  font:11px/1.7em "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;color:#333;  
+	background-repeat: repeat-x;
+	background-image: url(images/bg.jpg);
+	background-color: #d3d3d3;
+	margin:0;
+	padding:0;
+	color:#666;
+}
+
+a {color:#369;}
+h1, h2, h3, strong{color:#000;}
+h2 {padding: 0; margin:20px 0 10px 0;}
+p {margin:auto 5px 0 5px; padding:0;}
+
+#box {
+	margin: 0px auto;
+	height: 750px;
+	width: 1000px;
+	background-repeat: no-repeat;
+	background-image: url(images/box.png);
+}
+
+.box_content {
+  width:800px;
+	height:520px;
+  margin:0 auto;
+  padding-top:40px;
+ }
+
+.left {
+  float:left;
+  width:200px;
+}
+
+.right {
+  float:right;
+	 width:600px;
+}
+
+.networks .col{
+  float:left;
+  width:49%;
+}
+
+.networks, .sites, .clients{
+	clear:both;
+}
+
+.content{
+	padding:15px;
+}
+
+.intro{
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+  color: #000000;
+  margin-top: 25px;
+  font-size:2.5em;
+}
+
+.list {
+  overflow:auto;
+  margin-left:10px;
+}
+
+.col {
+  float:left;
+  width:30%;
+}
+
+.sociallink{
+  margin-left:5px;
+  line-height:14px;
+  clear:both;
+  font-weight:bold;
+  padding:5px 0 5px 0;
+}
+
+.sociallink img{
+  float:left;
+  margin-right:5px;
+  vertical-align:middle;
+}
+
+.sociallink a{
+  font-weight:normal;
+}
+
+.pic{
+  width:145px;
+  margin: 15px auto; 
+}
+
+.footer{
+clear:both;
+text-align:right;
+font-size:9px;
+margin-right:10px;
+}
+
+
+.fontin {
+color:#888888;
+font-family: Verdana,Arial,Helvetica,sans-serif;
+font-size:12px;
+margin:0;
+padding:15px 0 10px 5px;
+text-shadow:0 1px 1px #FFFFFF;
+}
+
+.flags{
+  position: fixed;
+  width: 80px;
+  height: 30px;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.flags img{
+  cursor: pointer;
+}

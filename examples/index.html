@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>example</title>
+  <script src="jquery-1.4.2.js" type="text/javascript"></script>
+  <script src="json2.js" type="text/javascript"></script>
+  <script language="javascript">
+    $(function(){
+      var httpMethods = ['GET', 'PUT', 'DELETE', 'POST'];
+      var httpUri = "http://zhou.fr/examples/example.php";
+      for(var i=0, httpMethod; httpMethod = httpMethods[i]; i++)
+      {
+        log(httpMethod + " " + httpUri);
+        $.ajax({
+          url: httpUri,
+          type: httpMethod,
+          cache: false,
+          async: false,
+          success: function (data) {
+            log("<font color='blue'>success</font>");
+            log(data);
+          },
+          error: function(xhr, ts, et)
+          {
+            log("<font color='red'>error</font>");
+            log(ts);
+          }
+        });
+      }
+    });
+    function log(obj)
+    {
+      if(typeof(obj) == "string")
+        $('#result').append("<p>" + obj + "</p>");
+      else
+        $('#result').append("<p>" + JSON.stringify(obj) + "</p>");
+    }
+  </script>
+</head>
+<body>
+  <div id="result">
+  </div>
+</body>
+</html>

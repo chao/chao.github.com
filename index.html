@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- 
+	This is the personal website of Chao ZHOU - http://zhou.fr
+	Inspired by Tim Van Damme - http://timvandamme.com
+	And Jamie Calder - http://www.jamiecalder.com/
+-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="Chao ZHOU is small company owner located in Beijing, China who have interest in the new Web technologies" />
+  <meta name="keywords" content="web, web developer, Hypertopic protocol, web development, php, html, css, web design, semantic web, web 2.0, socio-semantic web, sql, database" />
+  <title>Chao ZHOU</title>
+  <link href="css/default.css" rel="stylesheet" type="text/css" />
+  <link type="text/css" href="css/blitzer/jquery-ui-1.7.2.custom.css" rel="stylesheet" />  
+  
+  <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
+  <script language="javascript">
+  $(document).ready(function(){
+    $("#box").load("/en.html");
+    $('.sociallink').live("mouseover",function () {
+      $(this).stop().animate({
+        marginLeft : 0
+      }, 250);
+    });
+    
+    $('.sociallink').live("mouseout",function () {
+      $(this).stop().animate({
+        marginLeft : 5
+      }, 250);
+    });
+    
+    $('#zh-cn').click(function(){
+      $("#box").load("/zh-cn.html");
+    });
+    $('#en').click(function(){
+      $("#box").load("/en.html");
+    });
+    $('#fr').click(function(){
+      $("#box").load("/fr.html");
+    });
+  });
+  
+   $.fn.log = function (msg) {
+      console.log("%s: %o", msg, this);
+      return this;
+   };
+  </script>
+</head>
+
+<body>
+
+<div id="box">
+  
+</div>
+<div class="flags">
+  <img id="zh-cn" src="images/ch.png" alt="Chinese 中文版" />
+  <img id="en" src="images/en.png" alt="English" />
+  <img id="fr" src="images/fr.png" alt="French Française" />
+</div>
+</body>
+</html>

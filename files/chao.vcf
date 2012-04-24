@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:ZHOU;Chao;;;
+FN:Chao ZHOU
+ORG:nostos.com.cn;
+EMAIL;type=INTERNET;type=WORK;type=pref:chao@nostos.com.cn
+TEL;type=CELL;type=pref:+8681737525
+item1.ADR;type=HOME;type=pref:;;;Beijing;;;China
+item1.X-ABADR:cn
+X-ABUID:1D64BE77-B8E6-4C36-BC1A-A5F3C1F8FCEA\:ABPerson
+END:VCARD

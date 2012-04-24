@@ -17,7 +17,7 @@
   <script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>
   <script language="javascript">
   $(document).ready(function(){
-    $("#box").load("/en.html");
+    $("#box").load("en.html");
     $('.sociallink').live("mouseover",function () {
       $(this).stop().animate({
         marginLeft : 0
@@ -31,13 +31,15 @@
     });
     
     $('#zh-cn').click(function(){
-      $("#box").load("/zh-cn.html");
+      $("#box").load("zh-cn.html");
     });
     $('#en').click(function(){
-      $("#box").load("/en.html");
+      $("#box").load("en.html");
     });
     $('#fr').click(function(){
-      $("#box").load("/fr.html");
+      alert('Not finished yet.')
+      return false;
+      $("#box").load("fr.html");
     });
   });
   

@@ -2,5 +2,5 @@
 *.aux
 *.synctex.gz
 *.out
-*.pdf
+resume.pdf
 .DS_Store
